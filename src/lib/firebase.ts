@@ -6,14 +6,14 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDh9XihusSix89erKfOTHZEeUq3qyp05rw",
-  authDomain: "brandwatches.firebaseapp.com",
-  databaseURL: "https://brandwatches-default-rtdb.firebaseio.com",
-  projectId: "brandwatches",
-  storageBucket: "brandwatches.firebasestorage.app",
-  messagingSenderId: "86001107680",
-  appId: "1:86001107680:web:e04cd3989823dee9080685",
-  measurementId: "G-N5BBHPFDPP"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
