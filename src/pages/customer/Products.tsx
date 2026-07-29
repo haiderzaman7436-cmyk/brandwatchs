@@ -431,7 +431,7 @@ const Products = () => {
     let r = [...(products||[])];
     if (search) r = r.filter(p => p.name.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase()) || (p.brand&&p.brand.toLowerCase().includes(search.toLowerCase())));
     if (category) r = r.filter(p => p.category === category);
-    if (subcategory) r = r.filter(p => p.subcategory === subcategory);
+    if (subcategory) r = r.filter(p => p.subcategory === subcategory || (p.brand && p.brand.toLowerCase() === subcategory.toLowerCase()));
     if (showOnlyInStock) r = r.filter(p => p.stock > 0);
     if (showOnlyDiscounted) r = r.filter(p => p.discountPercent > 0);
     r = r.filter(p => { const fp = p.discountPercent ? p.price-(p.price*p.discountPercent/100) : p.price; return fp >= priceRange[0] && fp <= priceRange[1]; });
@@ -577,11 +577,16 @@ const Products = () => {
               {Array.from({length:8}).map((_,i) => <Skeleton key={i} />)}
             </div>
           ) : paginated.length === 0 ? (
-            <div className="text-center py-24 bg-brand-cards rounded-2xl border border-gray-100">
-              <Package className="h-16 w-16 mx-auto text-gray-200 mb-4" />
-              <p className="text-brand-secondary text-lg mb-4">No products found</p>
-              <button onClick={clearFilters} className="px-6 py-2.5 bg-gradient-to-r bg-brand-background text-brand-text rounded-full text-sm font-medium hover:shadow-lg transition-all">
-                Clear Filters
+            <div className="text-center py-24 bg-brand-cards rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center justify-center">
+              <div className="w-20 h-20 bg-brand-background rounded-full flex items-center justify-center mb-6 shadow-inner">
+                <Package className="h-10 w-10 text-brand-accent opacity-80" />
+              </div>
+              <h3 className="text-2xl font-bold text-brand-text mb-2">Coming Soon</h3>
+              <p className="text-brand-secondary text-md max-w-md mx-auto mb-8 leading-relaxed">
+                We are currently curating an exclusive collection for this category. Stay tuned for exciting new arrivals!
+              </p>
+              <button onClick={clearFilters} className="px-8 py-3 bg-brand-primary text-white rounded-full text-sm font-bold hover:shadow-lg transition-all hover:-translate-y-0.5">
+                View All Products
               </button>
             </div>
           ) : (
