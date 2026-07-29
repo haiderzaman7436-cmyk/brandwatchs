@@ -132,11 +132,8 @@ const Login = () => {
           </div>
 
           <div className="relative z-10">
-            <Link to="/shop" className="flex items-center gap-3 w-max group">
-              <div className="w-12 h-12 bg-brand-cards flex items-center justify-center rounded-none group-hover:bg-brand-background0 transition-colors">
-                <Package className="h-6 w-6 text-brand-text group-hover:text-brand-text transition-colors" />
-              </div>
-              <span className="font-bold text-2xl text-brand-text tracking-widest uppercase">Brand Watches</span>
+            <Link to="/" className="flex items-center gap-3 w-max group">
+              <img src="/images/logo.png" alt="Brand Logo" className="h-16 w-auto object-contain brightness-0 invert" />
             </Link>
           </div>
 
@@ -171,7 +168,7 @@ const Login = () => {
           <div className="max-w-md w-full mx-auto">
             
             <div className="mb-10 text-center lg:text-left">
-              <div className="flex justify-center lg:justify-start mb-6">
+              <div className="flex justify-center lg:hidden mb-6">
                 <img src="/images/logo.png" alt="Brand Logo" className="h-16 w-auto object-contain" />
               </div>
               <h1 className="text-3xl font-bold text-brand-text tracking-tight mb-2">
