@@ -429,9 +429,10 @@ const Checkout = () => {
                           className="bg-brand-background rounded-xl p-4"
                         >
                           <p className="font-medium mb-2">Bank Details</p>
-                          <p className="text-sm text-brand-secondary">Account Title: Lioro Store</p>
-                          <p className="text-sm text-brand-secondary">Account Number: 1234-5678-9012-3456</p>
-                          <p className="text-sm text-brand-secondary">Bank: HBL</p>
+                          <p className="text-sm text-brand-secondary">Account Title: Haider Zaman</p>
+                          <p className="text-sm text-brand-secondary">Account Number: 09230114474314</p>
+                          <p className="text-sm text-brand-secondary">Bank: Meezan Bank</p>
+                          <p className="text-sm text-brand-secondary">Jazz Cash / Easypaisa: 03447448769</p>
                           <p className="text-xs text-brand-secondary mt-2">Please transfer the exact amount and share screenshot</p>
                         </motion.div>
                       )}

@@ -111,13 +111,13 @@ const Footer = () => (
             <div className="w-10 h-10 bg-brand-primary text-white border border-zinc-800 rounded-none flex items-center justify-center shrink-0 group-hover:border-amber-500 transition-colors">
               <Phone className="h-4 w-4 text-zinc-300 group-hover:text-brand-accent transition-colors" />
             </div>
-            +92 300 0000000
+            03447448769
           </li>
           <li className="flex items-start gap-4 text-sm text-brand-secondary group">
             <div className="w-10 h-10 bg-brand-primary text-white border border-zinc-800 rounded-none flex items-center justify-center shrink-0 group-hover:border-amber-500 transition-colors">
               <MapPin className="h-4 w-4 text-zinc-300 group-hover:text-brand-accent transition-colors" />
             </div>
-            Karachi, Pakistan
+            Shop LC 93 A ,Civic Center Gujranwala
           </li>
         </ul>
       </div>
