@@ -168,9 +168,10 @@ const Login = () => {
         <div className="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center">
           <div className="max-w-md w-full mx-auto">
             
-            <div className="mb-10 text-center lg:text-left">
-              <div className="flex justify-center lg:hidden mb-6">
-                <img src="/images/logo.png" alt="Brand Logo" className="h-16 w-auto object-contain" />
+            <div className="mb-10 text-left">
+              <div className="flex items-center gap-3 lg:hidden mb-8">
+                <img src="/images/logo.png" alt="Brand Logo" className="h-12 w-12 object-contain bg-white p-2 rounded-xl shadow-sm border border-gray-100" />
+                <span className="font-bold text-xl text-brand-text tracking-widest uppercase">Brand Watches</span>
               </div>
               <h1 className="text-3xl font-bold text-brand-text tracking-tight mb-2">
                 {isSignup ? "Create Account" : "Sign In"}

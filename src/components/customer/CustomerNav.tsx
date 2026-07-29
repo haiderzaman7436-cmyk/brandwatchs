@@ -118,8 +118,9 @@ const CustomerNav = () => {
 
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 gap-4">
         {/* Logo */}
-        <Link to="/shop" className="flex items-center shrink-0">
-          <img src="/images/logo.png" alt="Brand Logo" className="h-16 w-auto object-contain mix-blend-multiply" />
+        <Link to="/shop" className="flex items-center gap-2 md:gap-3 shrink-0">
+          <img src="/images/logo.png" alt="Brand Logo" className="h-10 w-10 md:h-12 md:w-12 object-contain bg-white p-1 rounded-md shadow-sm border border-gray-100" />
+          <span className="font-bold text-lg md:text-xl text-brand-text tracking-widest uppercase">Brand Watches</span>
         </Link>
 
         {/* Nav Links — desktop */}

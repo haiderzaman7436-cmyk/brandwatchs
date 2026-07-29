@@ -368,9 +368,9 @@ const ProductDetail = () => {
       {/* Breadcrumb */}
       <div className="border-b bg-brand-cards/80 backdrop-blur-sm sticky top-0 z-20">
         <div className="max-w-7xl mx-auto px-4 py-3.5">
-          <div className="flex items-center gap-2 text-sm text-brand-secondary">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-brand-secondary">
             <Link to="/shop" className="hover:text-brand-accent transition-colors">Home</Link>
-            <ChevronRight className="h-3.5 w-3.5" />
+            <ChevronRight className="h-3.5 w-3.5 shrink-0" />
             <Link to="/shop/products" className="hover:text-brand-accent transition-colors">Products</Link>
             <ChevronRight className="h-3.5 w-3.5" />
             <Link to={`/shop/products?category=${product.category}`} className="hover:text-brand-accent transition-colors">
