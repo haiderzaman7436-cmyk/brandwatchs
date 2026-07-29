@@ -305,7 +305,7 @@ const OrderDetails = () => {
                   </div>
                   <div className="flex justify-between text-brand-secondary">
                     <span>Shipping</span>
-                    <span>₨{order.deliveryCharges ?? 300}</span>
+                    <span>₨300</span>
                   </div>
                   <div className="border-t pt-3 mt-3">
                     <div className="flex justify-between text-lg font-bold">

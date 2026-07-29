@@ -392,7 +392,7 @@ const OrderConfirmation = () => {
                 <div className="mt-4 pt-4 border-t border-dashed border-brand-border">
                   <div className="flex justify-between items-center">
                     <span className="text-brand-secondary text-sm">Shipping</span>
-                    <span className="text-sm">₨{order.deliveryCharges ?? 300}</span>
+                    <span className="text-sm">₨300</span>
                   </div>
                   <div className="flex justify-between items-center mt-2">
                     <span className="font-bold text-gray-800">Total Amount</span>

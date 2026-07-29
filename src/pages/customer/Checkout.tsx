@@ -652,11 +652,7 @@ const Checkout = () => {
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping</span>
-                    {shippingCost === 0 ? (
-                      <span className="text-green-600">Free</span>
-                    ) : (
-                      <span>₨{shippingCost.toLocaleString()}</span>
-                    )}
+                    <span>₨{shippingCost}</span>
                   </div>
                 </div>
 
