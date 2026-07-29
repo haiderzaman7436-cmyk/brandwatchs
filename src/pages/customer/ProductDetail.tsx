@@ -291,7 +291,7 @@ const ProductDetail = () => {
 
   const deliveryInfo = useMemo(() => {
     if (!product) return { isFree: false, charges: 200 };
-    const isFree = product.price >= 5000 || product.freeDelivery;
+    const isFree = product.freeDelivery;
     return { isFree, charges: isFree ? 0 : (product.deliveryCharges || 200) };
   }, [product]);
 
@@ -460,28 +460,32 @@ const ProductDetail = () => {
                 </div>
               )}
             </motion.div>
-
-            {/* Thumbnail strip */}
+            
+            {/* Thumbnail strip (Available Colors) */}
             {images.length > 1 && (
-              <div className="flex gap-3 overflow-x-auto pb-1">
-                {images.map((img, i) => (
-                  <motion.button
-                    key={i}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setSelectedImageIdx(i)}
-                    className={`relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${
-                      selectedImageIdx === i
-                        ? "border-amber-500 shadow-md shadow-zinc-200"
-                        : "border-brand-border hover:border-brand-border"
-                    }`}
-                  >
-                    <img src={img} alt={`View ${i + 1}`} className="w-full h-full object-contain p-2 bg-brand-cards" />
-                    {selectedImageIdx === i && (
-                      <div className="absolute inset-0 bg-brand-primary text-white/10 rounded-xl" />
-                    )}
-                  </motion.button>
-                ))}
+              <div className="pt-2">
+                <h3 className="text-sm font-bold text-brand-text mb-3 uppercase tracking-wider flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-brand-primary"></span>
+                  Available Colors
+                </h3>
+                <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                  {images.map((img, i) => (
+                    <motion.button
+                      key={i}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setSelectedImageIdx(i)}
+                      className={`relative flex-shrink-0 w-16 h-16 rounded-full overflow-hidden border-2 transition-all p-1 bg-white
+${
+                        selectedImageIdx === i
+                          ? "border-brand-primary shadow-lg scale-110"
+                          : "border-gray-200 hover:border-gray-300 opacity-70 hover:opacity-100"
+                      }`}
+                    >
+                      <img src={img} loading="lazy" alt={`Color ${i + 1}`} className="w-full h-full object-cover rounded-full" />
+                    </motion.button>
+                  ))}
+                </div>
               </div>
             )}
           </div>

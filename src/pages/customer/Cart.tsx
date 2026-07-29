@@ -22,7 +22,7 @@ const Cart = () => {
   const [promoLoading, setPromoLoading] = useState(false);
   const [promoLabel, setPromoLabel] = useState("");
 
-  const shippingCost = totalPrice > 5000 ? 0 : 200;
+  const shippingCost = 300;
   const grandTotal = totalPrice + shippingCost - promoDiscount;
 
   const handleApplyPromo = async () => {
@@ -146,34 +146,7 @@ const Cart = () => {
             </button>
           </Link>
 
-          {totalPrice < 5000 && (
-            <div className="bg-gradient-to-r from-zinc-50 to-zinc-100 border border-amber-50 rounded-2xl p-4 flex items-center gap-3">
-              <div className="w-10 h-10 bg-brand-cards rounded-xl flex items-center justify-center shadow-sm">
-                <Truck className="h-5 w-5 text-brand-accent" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-gray-800">Almost there!</p>
-                <p className="text-xs text-brand-secondary">Add <strong className="text-brand-accent">₨{(5000 - totalPrice).toLocaleString()}</strong> more for free delivery</p>
-              </div>
-              <div className="ml-auto">
-                <div className="w-24 h-2 bg-brand-background rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r bg-brand-background rounded-full transition-all"
-                    style={{ width: `${Math.min(100, (totalPrice / 5000) * 100)}%` }} />
-                </div>
-              </div>
-            </div>
-          )}
-          {totalPrice >= 5000 && (
-            <div className="bg-brand-background border border-brand-border rounded-2xl p-4 flex items-center gap-3">
-              <div className="w-10 h-10 bg-brand-primary rounded-xl flex items-center justify-center shadow-sm">
-                <Truck className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <p className="text-sm font-bold text-brand-text">Free Delivery Unlocked</p>
-                <p className="text-xs text-brand-secondary">Your order qualifies for free shipping</p>
-              </div>
-            </div>
-          )}
+
         </div>
 
         {/* Order Summary */}

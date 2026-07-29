@@ -161,7 +161,7 @@ const Checkout = () => {
   };
 
   // Calculate shipping
-  const shippingCost = totalPrice > 5000 ? 0 : 300;
+  const shippingCost = 300;
   const grandTotal = totalPrice + shippingCost;
 
   if (orderPlaced) {

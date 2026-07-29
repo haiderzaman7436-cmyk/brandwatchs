@@ -14,7 +14,7 @@ const Footer = () => (
     <div className="bg-brand-primary text-white border-b border-zinc-800">
       <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
         {[
-          { icon: <Truck className="h-8 w-8" />, title: "Free Delivery", desc: "On orders over ₨5,000" },
+          { icon: <Truck className="h-8 w-8" />, title: "Fast Delivery", desc: "Nationwide Shipping" },
           { icon: <RotateCcw className="h-8 w-8" />, title: "7 Day Returns", desc: "Hassle-free returns" },
           { icon: <ShieldCheck className="h-8 w-8" />, title: "100% Authentic", desc: "Genuine products only" },
           { icon: <Banknote className="h-8 w-8" />, title: "Cash on Delivery", desc: "Pay when you receive" },
