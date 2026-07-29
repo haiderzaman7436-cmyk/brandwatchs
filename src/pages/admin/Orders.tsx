@@ -66,6 +66,8 @@ import {
   MapPin,
   ShoppingBag,
   CreditCard,
+  Building2,
+  Banknote,
   AlertCircle,
   CheckCircle2,
   X,
@@ -906,6 +908,21 @@ const Orders = () => {
                                         <div className="space-y-2">
                                           <p className="text-sm text-brand-secondary">Address</p>
                                           <p className="font-medium">{selectedOrder.address}</p>
+                                        </div>
+                                        <div className="space-y-2">
+                                          <p className="text-sm text-brand-secondary">Payment Method</p>
+                                          <div className="font-medium flex items-center gap-2">
+                                            {selectedOrder.paymentMethod === 'bank' ? (
+                                              <><Building2 className="h-4 w-4 text-brand-accent" /> Bank Transfer</>
+                                            ) : (
+                                              <><Banknote className="h-4 w-4 text-brand-accent" /> Cash on Delivery</>
+                                            )}
+                                          </div>
+                                          {selectedOrder.paymentMethod === 'bank' && selectedOrder.transactionScreenshot && (
+                                            <a href={selectedOrder.transactionScreenshot} target="_blank" rel="noreferrer" className="text-brand-accent hover:underline text-xs flex items-center gap-1 mt-1">
+                                              <ImageIcon className="h-3 w-3" /> View Screenshot
+                                            </a>
+                                          )}
                                         </div>
                                       </div>
                                       

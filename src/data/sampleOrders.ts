@@ -17,6 +17,8 @@ export interface Order {
   total: number;
 
   status: "Pending" | "Dispatched" | "Completed" | "Cancelled";
+  paymentMethod?: "cod" | "bank";
+  transactionScreenshot?: string;
 
   date: string;
   dispatchDate?: string;

@@ -110,16 +110,16 @@ const CustomerNav = () => {
       scrolled ? "bg-brand-cards/90 backdrop-blur-lg shadow-sm border-b border-brand-border" : "bg-brand-cards"
     }`}>
       {/* Top announcement bar */}
-      <div className="bg-brand-primary text-white py-2 text-center border-b border-zinc-800">
-        <p className="text-[11px] text-zinc-300 tracking-widest uppercase font-medium">
-          Free Delivery on Orders Over ₨5,000 &nbsp;|&nbsp; Premium Authenticity Guaranteed
-        </p>
+      <div className="bg-brand-primary text-white py-2 border-b border-zinc-800 overflow-hidden relative flex items-center">
+        <div className="animate-marquee whitespace-nowrap text-[12px] text-zinc-100 tracking-widest uppercase font-bold w-full">
+          50% OFF ON AZADI SALE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50% OFF ON AZADI SALE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50% OFF ON AZADI SALE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50% OFF ON AZADI SALE
+        </div>
       </div>
 
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 gap-4">
         {/* Logo */}
         <Link to="/shop" className="flex items-center shrink-0">
-          <img src="/images/logo.png" alt="Brand Logo" className="h-10 w-auto object-contain" />
+          <img src="/images/logo.png" alt="Brand Logo" className="h-16 w-auto object-contain mix-blend-multiply" />
         </Link>
 
         {/* Nav Links — desktop */}

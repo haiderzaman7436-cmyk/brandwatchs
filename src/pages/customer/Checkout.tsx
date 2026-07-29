@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { useOrders } from "@/hooks/useOrders";
+import { storage } from "@/lib/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,7 +27,8 @@ import {
   Lock,
   Package,
   ChevronRight,
-  RotateCcw
+  RotateCcw,
+  AlertCircle
 } from "lucide-react";
 
 // Steps
@@ -58,7 +61,8 @@ const Checkout = () => {
     saveInfo: true,
   });
 
-  const [paymentMethod, setPaymentMethod] = useState("cod");
+  const [paymentMethod, setPaymentMethod] = useState<"cod" | "bank">("cod");
+  const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   // Redirect if cart empty
@@ -85,6 +89,10 @@ const Checkout = () => {
 
   const handleNextStep = () => {
     if (currentStep === 1 && !validateDelivery()) return;
+    if (currentStep === 2 && paymentMethod === "bank" && !screenshotFile) {
+      toast({ title: "Screenshot Required", description: "Please upload your transaction screenshot.", variant: "destructive" });
+      return;
+    }
     setCurrentStep(prev => Math.min(prev + 1, 3));
   };
 
@@ -109,7 +117,14 @@ const Checkout = () => {
         };
       });
 
-      // Create order object - removed paymentMethod as it might not be in your schema
+      let transactionScreenshot = "";
+      if (paymentMethod === "bank" && screenshotFile) {
+        const fileRef = ref(storage, `transactions/${Date.now()}_${screenshotFile.name}`);
+        const uploadResult = await uploadBytes(fileRef, screenshotFile);
+        transactionScreenshot = await getDownloadURL(uploadResult.ref);
+      }
+
+      // Create order object
       const orderData = {
         customerName: form.name,
         customerEmail: form.email,
@@ -118,6 +133,8 @@ const Checkout = () => {
         items: itemsWithDiscount,
         total: totalPrice,
         status: "Pending",
+        paymentMethod,
+        transactionScreenshot,
         date: new Date().toISOString(),
       };
 
@@ -144,7 +161,7 @@ const Checkout = () => {
   };
 
   // Calculate shipping
-  const shippingCost = totalPrice > 5000 ? 0 : 200;
+  const shippingCost = totalPrice > 5000 ? 0 : 300;
   const grandTotal = totalPrice + shippingCost;
 
   if (orderPlaced) {
@@ -366,7 +383,7 @@ const Checkout = () => {
 
                       <Button
                         onClick={handleNextStep}
-                        className="w-full bg-gradient-to-r bg-brand-background h-12"
+                        className="w-full bg-brand-primary text-white hover:bg-brand-primary/90 h-12 shadow-md transition-all"
                       >
                         Continue to Payment
                         <ChevronRight className="ml-2 h-4 w-4" />
@@ -392,7 +409,7 @@ const Checkout = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                      <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
+                      <RadioGroup value={paymentMethod} onValueChange={(v) => setPaymentMethod(v as "cod" | "bank")}>
                         <div className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${paymentMethod === "cod" ? "border-brand-primary bg-brand-background" : "border-brand-border hover:border-brand-primary/50"}`}>
                           <RadioGroupItem value="cod" id="cod" className="sr-only" />
                           <Label htmlFor="cod" className="flex items-center gap-4 cursor-pointer">
@@ -426,14 +443,63 @@ const Checkout = () => {
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
-                          className="bg-brand-background rounded-xl p-4"
+                          className="space-y-4"
                         >
-                          <p className="font-medium mb-2">Bank Details</p>
-                          <p className="text-sm text-brand-secondary">Account Title: Haider Zaman</p>
-                          <p className="text-sm text-brand-secondary">Account Number: 09230114474314</p>
-                          <p className="text-sm text-brand-secondary">Bank: Meezan Bank</p>
-                          <p className="text-sm text-brand-secondary">Jazz Cash / Easypaisa: 03447448769</p>
-                          <p className="text-xs text-brand-secondary mt-2">Please transfer the exact amount and share screenshot</p>
+                          <div className="bg-brand-background border border-brand-border rounded-xl p-5 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                              <Building2 className="h-24 w-24" />
+                            </div>
+                            
+                            <h4 className="font-bold text-brand-text mb-4 flex items-center gap-2">
+                              <Banknote className="h-5 w-5 text-brand-accent" />
+                              Payment Details
+                            </h4>
+                            
+                            <div className="grid gap-3 relative z-10">
+                              <div className="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <span className="text-xs text-brand-secondary uppercase font-bold tracking-wider">Bank</span>
+                                <div className="flex items-center gap-2">
+                                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Meezan_Bank_logo.png" alt="Meezan Bank" className="h-4 object-contain" />
+                                  <span className="text-sm font-semibold text-brand-text">Meezan Bank</span>
+                                </div>
+                              </div>
+                              <div className="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <span className="text-xs text-brand-secondary uppercase font-bold tracking-wider">Account Title</span>
+                                <span className="text-sm font-semibold text-brand-text">Haider Zaman</span>
+                              </div>
+                              <div className="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <span className="text-xs text-brand-secondary uppercase font-bold tracking-wider">Account Number</span>
+                                <span className="text-sm font-semibold text-brand-accent">09230114474314</span>
+                              </div>
+                              <div className="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <span className="text-xs text-brand-secondary uppercase font-bold tracking-wider">Mobile Wallets</span>
+                                <div className="flex flex-col items-end gap-1.5">
+                                  <div className="flex items-center gap-2">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/JazzCash_logo.png/320px-JazzCash_logo.png" alt="JazzCash" className="h-4 object-contain" />
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Easypaisa_logo.png/320px-Easypaisa_logo.png" alt="Easypaisa" className="h-4 object-contain" />
+                                  </div>
+                                  <span className="text-sm font-semibold text-brand-accent">03447448769</span>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-100">
+                              <p className="text-xs text-amber-800 flex items-start gap-2">
+                                <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+                                Please transfer the exact amount and upload your screenshot below to confirm the order.
+                              </p>
+                            </div>
+                          </div>
+                          <div>
+                            <Label htmlFor="screenshot" className="mb-2 block">Upload Screenshot <span className="text-red-500">*</span></Label>
+                            <Input 
+                              id="screenshot" 
+                              type="file" 
+                              accept="image/*" 
+                              onChange={(e) => setScreenshotFile(e.target.files?.[0] || null)}
+                              className="cursor-pointer"
+                            />
+                          </div>
                         </motion.div>
                       )}
 
@@ -443,7 +509,7 @@ const Checkout = () => {
                         </Button>
                         <Button
                           onClick={handleNextStep}
-                          className="flex-1 bg-gradient-to-r bg-brand-background"
+                          className="flex-1 bg-brand-primary text-white hover:bg-brand-primary/90 shadow-md transition-all"
                         >
                           Review Order
                           <ChevronRight className="ml-2 h-4 w-4" />
@@ -522,7 +588,7 @@ const Checkout = () => {
                         <Button
                           onClick={handlePlaceOrder}
                           disabled={loading}
-                          className="flex-1 bg-gradient-to-r bg-brand-background"
+                          className="flex-1 bg-brand-primary text-white hover:bg-brand-primary/90 shadow-md transition-all"
                         >
                           {loading ? (
                             <>
@@ -557,9 +623,18 @@ const Checkout = () => {
                       ? item.product.price - (item.product.price * item.product.discountPercent) / 100 
                       : item.product.price;
                     return (
-                      <div key={item.product.id} className="flex justify-between text-sm">
-                        <span className="truncate">{item.product.name} × {item.quantity}</span>
-                        <span>₨{(discountedPrice * item.quantity).toLocaleString()}</span>
+                      <div key={item.product.id} className="flex justify-between text-sm items-center">
+                        <span className="truncate max-w-[180px]">{item.product.name} × {item.quantity}</span>
+                        <div className="flex flex-col items-end">
+                          {item.product.discountPercent ? (
+                            <>
+                              <span className="text-xs text-brand-secondary line-through">₨{(item.product.price * item.quantity).toLocaleString()}</span>
+                              <span className="font-medium text-brand-accent">₨{(discountedPrice * item.quantity).toLocaleString()}</span>
+                            </>
+                          ) : (
+                            <span className="font-medium">₨{(item.product.price * item.quantity).toLocaleString()}</span>
+                          )}
+                        </div>
                       </div>
                     );
                   })}
@@ -590,6 +665,13 @@ const Checkout = () => {
                 <div className="flex justify-between text-xl font-bold">
                   <span>Total</span>
                   <span className="text-brand-accent">₨{grandTotal.toLocaleString()}</span>
+                </div>
+
+                <div className="bg-amber-50 border border-amber-100 rounded-lg p-3 mt-4">
+                  <p className="text-xs text-amber-800 flex items-center gap-2">
+                    <Package className="h-4 w-4" />
+                    <span><strong>Original boxes</strong> of the watches are available and will be shipped with your order.</span>
+                  </p>
                 </div>
 
                 {/* Trust Badges */}

@@ -90,7 +90,7 @@ const ZoomImage = ({ src, alt }: { src: string; alt: string }) => (
 const TrustBadge = ({ icon: Icon, label, sub, color }: { icon: any; label: string; sub: string; color: string }) => (
   <div className="flex flex-col items-center gap-1.5 text-center p-3">
     <div className={`p-2.5 rounded-xl ${color}`}>
-      <Icon className="h-5 w-5 text-brand-text" />
+      <Icon className="h-5 w-5" />
     </div>
     <p className="text-xs font-semibold text-gray-800">{label}</p>
     <p className="text-[10px] text-brand-secondary">{sub}</p>
@@ -540,7 +540,7 @@ const ProductDetail = () => {
             {/* Price block */}
             <div className="bg-gradient-to-r from-zinc-50 to-zinc-100 rounded-2xl p-5 border border-amber-50">
               <div className="flex items-baseline gap-3 flex-wrap">
-                <span className="text-4xl font-extrabold bg-gradient-to-r bg-brand-background bg-clip-text text-transparent">
+                <span className="text-4xl font-extrabold text-brand-text">
                   ₨{Math.round(finalPrice).toLocaleString()}
                 </span>
                 {discountedPrice && (
@@ -561,7 +561,7 @@ const ProductDetail = () => {
                 <Truck className="h-4 w-4 text-brand-secondary" />
                 <span className="text-sm text-brand-text font-medium">
                   {deliveryInfo.isFree
-                    ? "🎉 Free Delivery on this item"
+                    ? "Free Delivery on this item"
                     : `Delivery Charges: ₨${deliveryInfo.charges}`}
                 </span>
               </div>
@@ -645,7 +645,7 @@ const ProductDetail = () => {
                   onClick={handleBuyNow}
                   disabled={product.stock === 0}
                   size="lg"
-                  className="w-full h-14 text-base font-semibold rounded-xl bg-gradient-to-r bg-brand-background hover:from-amber-700 hover:to-amber-700 shadow-lg shadow-zinc-200"
+                  className="w-full h-14 text-base font-semibold rounded-xl bg-brand-primary text-white hover:bg-brand-primary/90 shadow-lg shadow-brand-primary/20 transition-all"
                 >
                   <Zap className="h-5 w-5 mr-2" />
                   Buy Now
@@ -673,10 +673,10 @@ const ProductDetail = () => {
 
             {/* Trust badges */}
             <div className="grid grid-cols-4 gap-1 bg-brand-background rounded-2xl p-3">
-              <TrustBadge icon={Truck} label="Fast Delivery" sub="1-5 days" color="bg-brand-background0" />
+              <TrustBadge icon={Truck} label="Fast Delivery" sub="1-5 days" color="bg-brand-primary text-white" />
               <TrustBadge icon={ShieldCheck} label="100% Authentic" sub="Guaranteed" color="bg-brand-primary text-white" />
-              <TrustBadge icon={RotateCcw} label="Easy Returns" sub="7 days" color="bg-green-500" />
-              <TrustBadge icon={Award} label="Top Rated" sub="5★ Brand" color="bg-orange-500" />
+              <TrustBadge icon={RotateCcw} label="Easy Returns" sub="7 days" color="bg-brand-primary text-white" />
+              <TrustBadge icon={Award} label="Top Rated" sub="5★ Brand" color="bg-brand-primary text-white" />
             </div>
           </div>
         </div>
