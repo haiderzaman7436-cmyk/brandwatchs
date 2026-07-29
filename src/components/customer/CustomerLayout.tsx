@@ -34,10 +34,7 @@ const Footer = () => (
       {/* Brand */}
       <div className="space-y-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-brand-cards rounded-none flex items-center justify-center">
-            <Package className="h-5 w-5 text-brand-text" />
-          </div>
-          <span className="font-bold text-xl text-brand-text tracking-widest uppercase">Brand Watches</span>
+          <img src="/images/logo.png" alt="Brand Logo" className="h-14 w-auto object-contain mix-blend-multiply" />
         </div>
         <p className="text-sm text-brand-secondary leading-relaxed">
           Pakistan's premium online store. Curated collections of luxury watches, fashion, jewellery and more.

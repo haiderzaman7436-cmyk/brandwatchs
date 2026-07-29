@@ -171,6 +171,9 @@ const Login = () => {
           <div className="max-w-md w-full mx-auto">
             
             <div className="mb-10 text-center lg:text-left">
+              <div className="flex justify-center lg:justify-start mb-6">
+                <img src="/images/logo.png" alt="Brand Logo" className="h-16 w-auto object-contain mix-blend-multiply" />
+              </div>
               <h1 className="text-3xl font-bold text-brand-text tracking-tight mb-2">
                 {isSignup ? "Create Account" : "Sign In"}
               </h1>

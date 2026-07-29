@@ -36,7 +36,9 @@ const AdminSidebar = () => {
   return (
     <aside className={cn("flex flex-col border-r bg-card transition-all duration-300 shrink-0", collapsed ? "w-16" : "w-60")}>
       <div className="flex h-16 items-center justify-between border-b px-4">
-        {!collapsed && <span className="font-bold text-lg">Brand Watches</span>}
+        {!collapsed && (
+          <img src="/images/logo.png" alt="Brand Watches Logo" className="h-10 w-auto object-contain mix-blend-multiply" />
+        )}
         <Button variant="ghost" size="icon" onClick={() => setCollapsed(!collapsed)} className="shrink-0">
           {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </Button>
