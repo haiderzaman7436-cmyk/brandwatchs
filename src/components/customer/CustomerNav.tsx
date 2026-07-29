@@ -136,8 +136,8 @@ const CustomerNav = () => {
           ))}
         </nav>
 
-        {/* Search */}
-        <div ref={searchRef} className="relative flex-1 max-w-sm ml-auto md:ml-0 md:max-w-md">
+        {/* Search - Desktop */}
+        <div ref={searchRef} className="hidden md:block relative flex-1 max-w-md ml-4">
           <form onSubmit={handleSearchSubmit}>
             <div className="relative">
               <LuxurySearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-brand-secondary" />
@@ -291,6 +291,17 @@ const CustomerNav = () => {
             className="md:hidden border-t border-brand-text bg-brand-cards overflow-hidden shadow-lg"
           >
             <div className="px-4 py-4 space-y-2">
+              <form onSubmit={handleSearchSubmit} className="mb-4">
+                <div className="relative">
+                  <LuxurySearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-secondary" />
+                  <Input
+                    placeholder="Search collections..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 h-11 bg-brand-background border-brand-border text-sm"
+                  />
+                </div>
+              </form>
               {navLinks.map((link) => (
                 <Link key={link.to} to={link.to} onClick={() => setMobileMenuOpen(false)}
                   className={`block px-4 py-3 text-sm font-semibold uppercase tracking-wider transition-colors ${
