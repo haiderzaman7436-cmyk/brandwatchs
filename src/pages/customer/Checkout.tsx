@@ -459,7 +459,7 @@ const Checkout = () => {
                               <div className="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
                                 <span className="text-xs text-brand-secondary uppercase font-bold tracking-wider">Bank</span>
                                 <div className="flex items-center gap-2">
-                                  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Meezan_Bank_logo.png" alt="Meezan Bank" className="h-4 object-contain" />
+                                  <span className="px-2 py-0.5 rounded text-[10px] font-black tracking-widest text-white bg-[#5C2B7A]">MEEZAN</span>
                                   <span className="text-sm font-semibold text-brand-text">Meezan Bank</span>
                                 </div>
                               </div>
