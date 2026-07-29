@@ -440,13 +440,13 @@ const ProductDetail = () => {
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand-cards/90 shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-primary hover:text-white"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand-cards/90 shadow-lg flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity hover:bg-brand-primary hover:text-white"
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand-cards/90 shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand-primary hover:text-white"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand-cards/90 shadow-lg flex items-center justify-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity hover:bg-brand-primary hover:text-white"
                   >
                     <ChevronRight className="h-4 w-4" />
                   </button>
@@ -508,7 +508,7 @@ ${
             </div>
 
             {/* Name */}
-            <h1 className="text-3xl md:text-4xl font-bold text-brand-text leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold text-brand-text leading-tight break-words break-all sm:break-normal">
               {product.name}
             </h1>
 
@@ -611,7 +611,7 @@ ${
                   disabled={product.stock === 0}
                   size="lg"
                   variant="outline"
-                  className={`w-full h-14 text-base font-semibold transition-all border-2 rounded-xl ${
+                  className={`w-full h-12 md:h-14 text-base font-semibold transition-all border-2 rounded-xl ${
                     addedToCart
                       ? "border-green-500 text-green-600 bg-green-50"
                       : "border-amber-600 text-brand-accent hover:bg-brand-background"
@@ -649,7 +649,7 @@ ${
                   onClick={handleBuyNow}
                   disabled={product.stock === 0}
                   size="lg"
-                  className="w-full h-14 text-base font-semibold rounded-xl bg-brand-primary text-white hover:bg-brand-primary/90 shadow-lg shadow-brand-primary/20 transition-all"
+                  className="w-full h-12 md:h-14 text-base font-semibold rounded-xl bg-brand-primary text-white hover:bg-brand-primary/90 shadow-lg shadow-brand-primary/20 transition-all"
                 >
                   <Zap className="h-5 w-5 mr-2" />
                   Buy Now

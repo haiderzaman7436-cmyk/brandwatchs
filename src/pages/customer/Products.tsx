@@ -241,8 +241,7 @@ const ProductCard = ({ product, index, view, onQuickView }: {product:any;index:n
         )}
 
         {/* Hover actions */}
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-          className="absolute inset-x-3 bottom-3 flex gap-2">
+        <div className="absolute inset-x-3 bottom-3 flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0 transition-all duration-300">
           <button onClick={(e) => { stopProp(e); addToCart({...product, selectedImage: images[imgIdx]}); toast({title:"Added to cart!"}); }}
             className="flex-1 py-2.5 bg-gradient-to-r bg-brand-background text-brand-text text-xs font-bold rounded-xl shadow-lg flex items-center justify-center gap-1.5 hover:shadow-zinc-200">
             <ShoppingCart className="h-3.5 w-3.5" /> Add to Cart
@@ -255,7 +254,7 @@ const ProductCard = ({ product, index, view, onQuickView }: {product:any;index:n
             className="w-10 h-10 rounded-xl bg-brand-cards border-2 border-brand-border flex items-center justify-center text-brand-secondary hover:text-brand-accent hover:border-brand-border transition-all">
             <Eye className="h-4 w-4" />
           </button>
-        </motion.div>
+        </div>
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1">

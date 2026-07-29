@@ -56,12 +56,7 @@ const ProductCard = forwardRef<HTMLDivElement, { product: any; index: number }>(
         </Link>
 
         {/* Hover action buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-x-4 bottom-4 flex gap-2"
-        >
+        <div className="absolute inset-x-4 bottom-4 flex gap-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
           <button
             onClick={(e) => { e.preventDefault(); addToCart({ ...product }); toast({ title: "Added to cart", description: product.name }); }}
             className="flex-1 py-3 bg-brand-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-brand-primary hover:text-white transition-colors flex items-center justify-center gap-2"
@@ -76,7 +71,7 @@ const ProductCard = forwardRef<HTMLDivElement, { product: any; index: number }>(
           >
             <Heart className={`h-4 w-4 ${inWishlist ? "fill-amber-500" : ""}`} />
           </button>
-        </motion.div>
+        </div>
 
         {/* Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2">
