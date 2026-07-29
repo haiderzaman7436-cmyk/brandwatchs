@@ -134,7 +134,7 @@ const Login = () => {
           <div className="relative z-10">
             <Link to="/" className="flex items-center gap-3 w-max group">
               <img src="/images/logo.png" alt="Brand Logo" className="h-14 w-14 object-contain bg-white p-2 rounded-xl shadow-lg" />
-              <span className="font-bold text-2xl text-brand-text tracking-widest uppercase">Brand Watches</span>
+              <span className="font-bold text-2xl text-white tracking-widest uppercase">Brand Watches</span>
             </Link>
           </div>
 
