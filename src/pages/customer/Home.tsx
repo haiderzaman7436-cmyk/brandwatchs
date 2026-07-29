@@ -106,10 +106,23 @@ const ProductCard = forwardRef<HTMLDivElement, { product: any; index: number }>(
       <div className="p-5 text-center">
         <p className="text-[10px] uppercase tracking-widest text-brand-secondary mb-2 font-medium">{product.category}</p>
         <Link to={`/shop/product/${product.id}`}>
-          <h3 className="font-bold text-brand-text text-sm tracking-wide line-clamp-1 hover:text-brand-accent transition-colors mb-2">
+          <h3 className="font-bold text-brand-text text-sm tracking-wide line-clamp-1 hover:text-brand-accent transition-colors mb-1">
             {product.name}
           </h3>
         </Link>
+        {product.images?.length > 1 && (
+          <div className="flex items-center justify-center gap-1.5 mb-3 mt-1">
+            <span className="text-[10px] font-medium text-brand-secondary">{product.images.length} Colors:</span>
+            <div className="flex gap-1">
+              {product.images.slice(0, 5).map((img:string, i:number) => (
+                <div key={i} className="w-3.5 h-3.5 rounded-full border border-gray-200 shadow-sm overflow-hidden">
+                  <img src={img} loading="lazy" className="w-full h-full object-cover" />
+                </div>
+              ))}
+              {product.images.length > 5 && <span className="text-[9px] text-gray-400 flex items-center">+{product.images.length-5}</span>}
+            </div>
+          </div>
+        )}
         <div className="flex items-center justify-center gap-1 mb-3">
           {[1,2,3,4,5].map((s) => (
             <Star key={s} className={`h-3 w-3 ${s <= Math.round(product.reviewRating || 4) ? "fill-amber-400 text-amber-400" : "text-zinc-200"}`} />

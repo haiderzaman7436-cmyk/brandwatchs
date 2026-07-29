@@ -174,6 +174,19 @@ const ProductCard = ({ product, index, view, onQuickView }: {product:any;index:n
           <Link to={`/shop/product/${product.id}`}>
             <h3 className="font-semibold text-gray-800 text-sm hover:text-brand-accent transition-colors line-clamp-1">{product.name}</h3>
           </Link>
+          {images.length > 1 && (
+            <div className="flex items-center gap-1.5 mt-1.5 mb-1">
+              <span className="text-[10px] font-medium text-brand-secondary">{images.length} Colors:</span>
+              <div className="flex gap-1">
+                {images.slice(0, 5).map((img:string, i:number) => (
+                  <div key={i} onMouseEnter={() => setImgIdx(i)} className={`w-4 h-4 rounded-full border shadow-sm overflow-hidden cursor-pointer ${imgIdx === i ? 'border-brand-primary ring-1 ring-brand-primary' : 'border-gray-200 hover:border-gray-300'}`}>
+                    <img src={img} loading="lazy" className="w-full h-full object-cover" />
+                  </div>
+                ))}
+                {images.length > 5 && <span className="text-[10px] text-gray-400 flex items-center">+{images.length-5}</span>}
+              </div>
+            </div>
+          )}
           <p className="text-xs text-brand-secondary line-clamp-1 mt-0.5">{product.description}</p>
           <div className="flex items-center gap-2 mt-1">
             <StarRating rating={product.reviewRating || 0} />
@@ -277,6 +290,19 @@ const ProductCard = ({ product, index, view, onQuickView }: {product:any;index:n
         <Link to={`/shop/product/${product.id}`}>
           <h3 className="font-semibold text-gray-800 text-sm line-clamp-1 hover:text-brand-accent transition-colors mb-1">{product.name}</h3>
         </Link>
+        {images.length > 1 && (
+          <div className="flex items-center gap-1.5 mb-2 mt-1">
+            <span className="text-[10px] font-medium text-brand-secondary">{images.length} Colors:</span>
+            <div className="flex gap-1">
+              {images.slice(0, 5).map((img:string, i:number) => (
+                <div key={i} onMouseEnter={() => setImgIdx(i)} className={`w-4 h-4 rounded-full border shadow-sm overflow-hidden cursor-pointer ${imgIdx === i ? 'border-brand-primary ring-1 ring-brand-primary' : 'border-gray-200 hover:border-gray-300'}`}>
+                  <img src={img} loading="lazy" className="w-full h-full object-cover" />
+                </div>
+              ))}
+              {images.length > 5 && <span className="text-[10px] text-gray-400 flex items-center">+{images.length-5}</span>}
+            </div>
+          </div>
+        )}
         <p className="text-xs text-brand-secondary line-clamp-1 mb-2">{product.description}</p>
         <div className="flex items-center gap-1 mb-2">
           <StarRating rating={product.reviewRating || 0} />
