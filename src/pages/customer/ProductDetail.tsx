@@ -290,9 +290,9 @@ const ProductDetail = () => {
   const inWishlist = product ? isInWishlist(product.id) : false;
 
   const deliveryInfo = useMemo(() => {
-    if (!product) return { isFree: false, charges: 200 };
+    if (!product) return { isFree: false, charges: 300 };
     const isFree = product.freeDelivery;
-    return { isFree, charges: isFree ? 0 : (product.deliveryCharges || 200) };
+    return { isFree, charges: isFree ? 0 : (product.deliveryCharges || 300) };
   }, [product]);
 
   const relatedProducts = useMemo(() => {
