@@ -676,7 +676,7 @@ ${
             )}
 
             {/* Trust badges */}
-            <div className="grid grid-cols-4 gap-1 bg-brand-background rounded-2xl p-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-1 bg-brand-background rounded-2xl p-3">
               <TrustBadge icon={Truck} label="Fast Delivery" sub="1-5 days" color="bg-brand-primary text-white" />
               <TrustBadge icon={ShieldCheck} label="100% Authentic" sub="Guaranteed" color="bg-brand-primary text-white" />
               <TrustBadge icon={RotateCcw} label="Easy Returns" sub="7 days" color="bg-brand-primary text-white" />

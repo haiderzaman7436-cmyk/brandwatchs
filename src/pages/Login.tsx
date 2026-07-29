@@ -133,7 +133,7 @@ const Login = () => {
 
           <div className="relative z-10">
             <Link to="/" className="flex items-center gap-3 w-max group">
-              <img src="/images/logo.png" alt="Brand Logo" className="h-16 w-auto object-contain brightness-0 invert" />
+              <img src="/images/logo.png" alt="Brand Logo" className="h-16 w-auto object-contain bg-white p-2 rounded-xl shadow-lg" />
             </Link>
           </div>
 
