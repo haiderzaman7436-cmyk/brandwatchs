@@ -688,12 +688,12 @@ ${
         {/* ── TABS ── */}
         <div className="mt-16">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent gap-1">
+            <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent gap-1 overflow-x-auto flex-nowrap scrollbar-hide">
               {["description", "specifications", "warranty", "reviews"].map((tab) => (
                 <TabsTrigger
                   key={tab}
                   value={tab}
-                  className="capitalize rounded-none border-b-2 border-transparent data-[state=active]:border-amber-500 data-[state=active]:text-brand-accent data-[state=active]:bg-transparent px-5 py-3 text-sm font-medium transition-all"
+                  className="capitalize rounded-none border-b-2 border-transparent data-[state=active]:border-amber-500 data-[state=active]:text-brand-accent data-[state=active]:bg-transparent px-4 sm:px-5 py-3 text-sm font-medium transition-all whitespace-nowrap"
                 >
                   {tab === "reviews" ? `Reviews (${product.reviewCount || 0})` : tab}
                 </TabsTrigger>
