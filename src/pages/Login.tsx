@@ -134,7 +134,10 @@ const Login = () => {
           <div className="relative z-10">
             <Link to="/" className="flex items-center gap-3 w-max group">
               <img src="/images/logo.png" alt="Brand Logo" className="h-14 w-14 object-contain bg-white p-2 rounded-xl shadow-lg" />
-              <span className="font-bold text-2xl text-white tracking-widest uppercase">Brand Watches</span>
+              <div className="flex flex-col items-start leading-none justify-center mt-1">
+                <span className="font-extrabold text-2xl text-white tracking-widest uppercase">Brand</span>
+                <span className="font-bold text-sm text-white/70 tracking-[0.2em] uppercase mt-1">Watches</span>
+              </div>
             </Link>
           </div>
 
@@ -171,7 +174,10 @@ const Login = () => {
             <div className="mb-10 text-left">
               <div className="flex items-center gap-3 lg:hidden mb-8">
                 <img src="/images/logo.png" alt="Brand Logo" className="h-12 w-12 object-contain bg-white p-2 rounded-xl shadow-sm border border-gray-100" />
-                <span className="font-bold text-xl text-brand-text tracking-widest uppercase">Brand Watches</span>
+                <div className="flex flex-col items-start leading-none justify-center mt-1">
+                  <span className="font-extrabold text-xl text-brand-text tracking-widest uppercase">Brand</span>
+                  <span className="font-bold text-xs text-brand-secondary tracking-[0.2em] uppercase mt-1">Watches</span>
+                </div>
               </div>
               <h1 className="text-3xl font-bold text-brand-text tracking-tight mb-2">
                 {isSignup ? "Create Account" : "Sign In"}
